@@ -1,0 +1,30 @@
+/* Typography */
+
+body,
+button,
+input,
+select {
+  font-family: system-ui;
+}
+
+label,
+th,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Fredoka One";
+}
+
+/* Theme */
+
+body {
+  background-color: rgb(241, 218, 190);
+}
+
+a {
+  color: #56a9ff;
+  text-decoration: none;
+}
