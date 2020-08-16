@@ -13,6 +13,7 @@
     "react": "^17.0.0-rc.0",
     "react-dom": "^17.0.0-rc.0",
     "react-scripts": "^3.4.3",
+    "typeface-fredoka-one": "^0.0.72",
     "typescript": "^3.9.7",
     "yup": "^0.29.3"
   },
