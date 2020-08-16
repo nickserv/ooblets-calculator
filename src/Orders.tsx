@@ -15,7 +15,6 @@ function getItem(item: string) {
   return items.flat().find(({ name }) => name === item)!
 }
 
-// TODO: Show recommended orders (1 per level)
 export default function OrdersForm({
   push,
   remove,
@@ -47,7 +46,7 @@ export default function OrdersForm({
               (item) =>
                 ("cost" in item ? item.cost : 0) *
                 order.amount *
-                (order.item === values.discount ? 0.5 : 1) // TODO: Figure out how discounts are rounded
+                (order.item === values.discount ? 0.5 : 1)
             )
             .reduce((x, y) => x + y)
           const profit = order.payment - cost

@@ -86,19 +86,6 @@ export default function App() {
               component={Orders}
             />
 
-            {/* TODO: Nicer error reporting */}
-            {/* <h3>Errors</h3>
-            {JSON.stringify(errors)}
-            {[
-              errors.level,
-              errors.discount,
-              ...errors.orders?.flatMap(Object.values)
-            ]
-              .filter((error) => error)
-              .map((error) => (
-                <li key={error}>{error}</li>
-              ))} */}
-
             <Persist name="form" />
           </Form>
         )}
