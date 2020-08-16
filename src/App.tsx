@@ -23,7 +23,7 @@ export default function App() {
         initialValues={{
           level: 1,
           discount: "none",
-          orders: []
+          orders: [],
         }}
         validationSchema={object().shape({
           level: number().integer().min(1).max(4),
@@ -32,15 +32,15 @@ export default function App() {
             ...items
               .flat()
               .filter((item) => "cost" in item)
-              .map((item) => item.name)
+              .map((item) => item.name),
           ]),
           orders: array().of(
             object().shape({
               amount: number().integer().min(5),
               item: mixed().oneOf(items.flat().map((item) => item.name)),
-              payment: number().integer().min(1)
+              payment: number().integer().min(1),
             })
-          )
+          ),
         })}
         onSubmit={() => {}}
       >

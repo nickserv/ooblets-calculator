@@ -8,7 +8,7 @@ import { Order, Values } from "./types"
 const defaultOrder: Order = {
   amount: 5,
   item: "caroot",
-  payment: 1
+  payment: 1,
 }
 
 function getItem(item: string) {
@@ -19,7 +19,7 @@ function getItem(item: string) {
 export default function OrdersForm({
   push,
   remove,
-  form: { values }
+  form: { values },
 }: ArrayHelpers & { form: FormikProps<Values> }) {
   return (
     <table>
