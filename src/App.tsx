@@ -90,6 +90,12 @@ export default function App() {
           </Form>
         )}
       </Formik>
+
+      <p>
+        <a href="https://github.com/nickmccurdy/ooblets-calculator">
+          Source on GitHub
+        </a>
+      </p>
     </>
   )
 }
