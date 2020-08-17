@@ -1,4 +1,6 @@
-# ooblets-calculator
+# [Ooblets](https://ooblets.com/) Calculator
+
+Visit [Plenny's](https://ooblets.gamepedia.com/Plenny's) and enter what bulk orders you have available today. We'll tell you how you can best make a profit.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
