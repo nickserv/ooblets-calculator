@@ -1,4 +1,4 @@
-import { ArrayHelpers, ErrorMessage, Field, FormikProps } from "formik"
+import { ArrayHelpers, Field, FormikProps } from "formik"
 import React from "react"
 
 import items from "./items"
@@ -69,7 +69,6 @@ export default function OrdersForm({
                   }}
                   style={{ width: "2.5em" }}
                 />
-                <ErrorMessage name={`orders.${index}.amount`} />
 
                 <Field
                   component="select"
@@ -84,7 +83,6 @@ export default function OrdersForm({
                     </optgroup>
                   ))}
                 </Field>
-                <ErrorMessage name={`orders.${index}.item`} />
               </td>
 
               <td>{cost}</td>
@@ -96,7 +94,6 @@ export default function OrdersForm({
                   size={5}
                   style={{ width: "4em" }}
                 />
-                <ErrorMessage name={`orders.${index}.payment`} />
               </td>
 
               <td>{profit}</td>
