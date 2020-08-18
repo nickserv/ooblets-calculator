@@ -44,9 +44,11 @@ export default function OrdersForm({
           const cost = orderItems
             .map(
               (item) =>
-                ("cost" in item ? item.cost : 0) *
-                order.amount *
-                (order.item === values.discount ? 0.5 : 1)
+                ("cost" in item
+                  ? item.name === values.discount
+                    ? Math.floor(item.cost * 0.5)
+                    : item.cost
+                  : 0) * order.amount
             )
             .reduce((x, y) => x + y)
           const profit = order.payment - cost
