@@ -20,6 +20,32 @@ export default function OrdersForm({
   remove,
   form: { values },
 }: ArrayHelpers & { form: FormikProps<Values> }) {
+  const data = values.orders.map((order) => {
+    let orderItems = [getItem(order.item)]
+    if ("from" in orderItems[0]) {
+      orderItems = orderItems[0].from.map(getItem)
+    }
+
+    const cost = orderItems
+      .map(
+        (item) =>
+          ("cost" in item
+            ? item.name === values.discount
+              ? Math.floor(item.cost * 0.5)
+              : item.cost
+            : 0) * order.amount
+      )
+      .reduce((x, y) => x + y)
+    const profit = order.payment - cost
+    // maximum
+    const days = orderItems
+      .map((item) => ("days" in item ? item.days : 0))
+      .reduce((x, y) => Math.max(x, y))
+    const profitPerDay = Math.round(profit / (days || 1))
+
+    return { cost, profit, days, profitPerDay }
+  })
+
   return (
     <table>
       <thead>
@@ -35,29 +61,7 @@ export default function OrdersForm({
       </thead>
 
       <tbody>
-        {values.orders.map((order, index) => {
-          let orderItems = [getItem(order.item)]
-          if ("from" in orderItems[0]) {
-            orderItems = orderItems[0].from.map(getItem)
-          }
-
-          const cost = orderItems
-            .map(
-              (item) =>
-                ("cost" in item
-                  ? item.name === values.discount
-                    ? Math.floor(item.cost * 0.5)
-                    : item.cost
-                  : 0) * order.amount
-            )
-            .reduce((x, y) => x + y)
-          const profit = order.payment - cost
-          // maximum
-          const days = orderItems
-            .map((item) => ("days" in item ? item.days : 0))
-            .reduce((x, y) => Math.max(x, y))
-          const profitPerDay = Math.round(profit / (days || 1))
-
+        {data.map(({ cost, profit, days, profitPerDay }, index) => {
           return (
             <tr key={index}>
               <td>
