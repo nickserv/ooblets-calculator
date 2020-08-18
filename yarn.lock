@@ -4105,6 +4105,11 @@ escodegen@^1.11.0, escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
+eslint-config-modern@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-modern/-/eslint-config-modern-0.6.0.tgz#519300d09a481413f7656452f460bff568455248"
+  integrity sha512-2fzhHvAZVm0d3JYut5r/w3Fm2+fJs6f3p4fSLeDiLknHJrKOLOqv5Ylj3t0/GupeqkfS/UaVeGRlseXdCjCGug==
+
 eslint-config-react-app@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/eslint-config-react-app/-/eslint-config-react-app-5.2.1.tgz#698bf7aeee27f0cea0139eaef261c7bf7dd623df"
