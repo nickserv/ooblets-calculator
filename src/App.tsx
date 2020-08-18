@@ -84,7 +84,7 @@ export default function App() {
               component={Orders}
             />
 
-            {errors && <h2>Errors</h2>}
+            {Object.keys(errors).length ? <h2>Errors</h2> : null}
             <ul>
               {[
                 errors.level,
