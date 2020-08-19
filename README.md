@@ -4,6 +4,11 @@ Visit [Plenny's](https://ooblets.gamepedia.com/Plenny's) and enter what bulk ord
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Credit
+
+- [Ooblets](https://ooblets.com/) for the game
+- [Ooblets Wiki](https://ooblets.gamepedia.com/Ooblets_Wiki) and [Rock Paper Shotgun](https://www.rockpapershotgun.com/2020/07/21/ooblets-items-where-to-get-clothlets-and-froobtose/) for item information
+
 ## Available Scripts
 
 In the project directory, you can run:
