@@ -46,11 +46,6 @@ export default function OrdersForm({
     return { cost, profit, days, profitPerDay }
   })
 
-  const recommended = data
-    .map((row, index) => index)
-    .sort((a, b) => data[b].profit - data[a].profit)
-    .slice(0, values.level)
-
   return (
     <table>
       <thead>
@@ -66,7 +61,23 @@ export default function OrdersForm({
       </thead>
 
       <tbody>
-        {data.map(({ cost, profit, days, profitPerDay }, index) => {
+        {data.map((row, index) => {
+          function highlightRecommended(
+            key: keyof typeof data[0],
+            reverse = false
+          ) {
+            const results = data
+              .map((row, index) => index)
+              .sort((a, b) => data[b][key] - data[a][key])
+
+            if (reverse) {
+              results.reverse()
+            }
+
+            const isRecommended = results.slice(0, values.level).includes(index)
+            return isRecommended ? <strong>{row[key]}</strong> : row[key]
+          }
+
           return (
             <tr key={index}>
               <td>
@@ -96,7 +107,7 @@ export default function OrdersForm({
                 </Field>
               </td>
 
-              <td>{cost}</td>
+              <td>{highlightRecommended("cost", true)}</td>
 
               <td>
                 <Field
@@ -107,17 +118,11 @@ export default function OrdersForm({
                 />
               </td>
 
-              <td>
-                {recommended.includes(index) ? (
-                  <strong>{profit}</strong>
-                ) : (
-                  profit
-                )}
-              </td>
+              <td>{highlightRecommended("profit")}</td>
 
-              <td>{days}</td>
+              <td>{highlightRecommended("days", true)}</td>
 
-              <td>{profitPerDay}</td>
+              <td>{highlightRecommended("profitPerDay")}</td>
 
               <td>
                 <button type="button" onClick={() => remove(index)}>
