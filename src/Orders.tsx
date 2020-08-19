@@ -46,6 +46,11 @@ export default function OrdersForm({
     return { cost, profit, days, profitPerDay }
   })
 
+  const recommended = data
+    .map((row, index) => index)
+    .sort((a, b) => data[b].profit - data[a].profit)
+    .slice(0, values.level)
+
   return (
     <table>
       <thead>
@@ -102,7 +107,13 @@ export default function OrdersForm({
                 />
               </td>
 
-              <td>{profit}</td>
+              <td>
+                {recommended.includes(index) ? (
+                  <strong>{profit}</strong>
+                ) : (
+                  profit
+                )}
+              </td>
 
               <td>{days}</td>
 
