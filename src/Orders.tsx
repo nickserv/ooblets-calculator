@@ -42,6 +42,10 @@ export default function OrdersForm({
       inputRefs.current.splice(removedRow.current, 1)
       removedRow.current = undefined
     }
+
+    if (!values.orders.length) {
+      inputRefs.current = []
+    }
   })
 
   const data = values.orders.map((order) => {
