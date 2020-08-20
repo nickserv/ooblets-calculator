@@ -1,5 +1,5 @@
 import { ArrayHelpers, Field, FormikProps } from "formik"
-import React from "react"
+import React, { createRef, RefObject, useEffect, useRef } from "react"
 
 import items from "./items"
 import "./Orders.css"
@@ -20,6 +20,30 @@ export default function OrdersForm({
   remove,
   form: { values },
 }: ArrayHelpers & { form: FormikProps<Values> }) {
+  const inputRefs = useRef<RefObject<HTMLInputElement>[]>([])
+  const addingRow = useRef(false)
+  const removedRow = useRef<number>()
+
+  useEffect(() => {
+    inputRefs.current.push(
+      ...values.orders
+        .slice(inputRefs.current.length)
+        .map(() => createRef<HTMLInputElement>())
+    )
+
+    const last = inputRefs.current[inputRefs.current.length - 1]?.current
+
+    if (last && addingRow.current) {
+      last.focus()
+      addingRow.current = false
+    }
+
+    if (removedRow.current !== undefined) {
+      inputRefs.current.splice(removedRow.current, 1)
+      removedRow.current = undefined
+    }
+  })
+
   const data = values.orders.map((order) => {
     let orderItems = [getItem(order.item)]
     if ("from" in orderItems[0]) {
@@ -82,6 +106,7 @@ export default function OrdersForm({
             <tr key={index}>
               <td>
                 <Field
+                  innerRef={inputRefs.current[index]}
                   name={`orders.${index}.amount`}
                   type="number"
                   step={5}
@@ -125,7 +150,13 @@ export default function OrdersForm({
               <td>{highlightRecommended("profitPerDay")}</td>
 
               <td>
-                <button type="button" onClick={() => remove(index)}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    remove(index)
+                    removedRow.current = index
+                  }}
+                >
                   X
                 </button>
               </td>
@@ -140,7 +171,10 @@ export default function OrdersForm({
             <button
               className="fluid"
               type="button"
-              onClick={() => push(defaultOrder)}
+              onClick={() => {
+                push(defaultOrder)
+                addingRow.current = true
+              }}
             >
               Add
             </button>
