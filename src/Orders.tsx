@@ -35,6 +35,7 @@ export default function OrdersForm({
 
     if (last && addingRow.current) {
       last.focus()
+      last.select()
       addingRow.current = false
     }
 
