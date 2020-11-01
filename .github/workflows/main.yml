@@ -1,12 +1,9 @@
-name: github pages
+name: CI
 
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,10 +11,14 @@ jobs:
       - name: Install
         run: yarn
 
+      - name: Test
+        run: yarn test
+
       - name: Build
         run: yarn build
 
       - name: Deploy
+        if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
