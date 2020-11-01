@@ -15,6 +15,34 @@ function getItem(item: string) {
   return items.flat().find(({ name }) => name === item)!
 }
 
+export function calculateOrders(discount: string, orders: Order[]) {
+  return orders.map((order) => {
+    let orderItems = [getItem(order.item)]
+    if ("from" in orderItems[0]) {
+      orderItems = orderItems[0].from.map(getItem)
+    }
+
+    const cost = orderItems
+      .map(
+        (item) =>
+          ("cost" in item
+            ? item.name === discount
+              ? Math.floor(item.cost * 0.5)
+              : item.cost
+            : 0) * order.amount
+      )
+      .reduce((x, y) => x + y)
+    const profit = order.payment - cost
+    // maximum
+    const days = orderItems
+      .map((item) => ("days" in item ? item.days : 0))
+      .reduce((x, y) => Math.max(x, y))
+    const profitPerDay = Math.round(profit / (days || 1))
+
+    return { cost, profit, days, profitPerDay }
+  })
+}
+
 export default function OrdersForm({
   push,
   remove,
@@ -49,31 +77,7 @@ export default function OrdersForm({
     }
   })
 
-  const data = values.orders.map((order) => {
-    let orderItems = [getItem(order.item)]
-    if ("from" in orderItems[0]) {
-      orderItems = orderItems[0].from.map(getItem)
-    }
-
-    const cost = orderItems
-      .map(
-        (item) =>
-          ("cost" in item
-            ? item.name === values.discount
-              ? Math.floor(item.cost * 0.5)
-              : item.cost
-            : 0) * order.amount
-      )
-      .reduce((x, y) => x + y)
-    const profit = order.payment - cost
-    // maximum
-    const days = orderItems
-      .map((item) => ("days" in item ? item.days : 0))
-      .reduce((x, y) => Math.max(x, y))
-    const profitPerDay = Math.round(profit / (days || 1))
-
-    return { cost, profit, days, profitPerDay }
-  })
+  const data = calculateOrders(values.discount, values.orders)
 
   return (
     <table>
