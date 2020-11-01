@@ -6,7 +6,6 @@ import App from "./App"
 test("focuses new order when adding", async () => {
   render(<App />)
   userEvent.click(screen.getByText("Add"))
-  await waitFor(() =>
-    expect(document.querySelector("table input")).toHaveFocus()
-  )
+  expect(document.querySelector("table input")).toHaveFocus()
+  await waitFor(() => {})
 })
