@@ -1,5 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 /* Typography */
-
 body,
 button,
 input,
@@ -11,7 +11,6 @@ select {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 label,
 th,
 h1,
@@ -20,16 +19,199 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Fredoka One";
+  font-family: "Roboto", sans-serif;
 }
-
 /* Theme */
-
 body {
-  background-color: rgb(241, 218, 190);
+  background-color: #0d2857;
+  color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5rem;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+}
+a::after {
+  content: " ";
+  display: block;
+  margin-top: -8px;
+  height: 7px;
+  width: 100%;
+  background-color: #f85c69;
+}
+label,
+th,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+h1 {
+  font-size: 60px;
+}
+h2 {
+  font-size: 40px;
+}
+p {
+  margin: 30px 0;
+  font-size: 20px;
+  max-width: 425px;
+}
+form div {
+  display: inline-block;
+}
+form div:nth-child(1) {
+  margin-right: 50px;
+  margin-bottom: 40px;
+}
+label {
+  font-size: 20px;
+}
+.ooblets-logo {
+  border: none;
+}
+.ooblets-logo::after {
+  content: none;
+}
+.ooblets-logo img {
+  width: 345px;
+  margin: 50px 0;
+}
+.button-ooblets,
+.button-ooblets--primary,
+.button-ooblets--danger {
+  display: block;
+  width: 150px;
+  height: 35px;
+  border-radius: 20px;
+  border: none;
+  background-color: #3f3f3f;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+.button-ooblets--primary {
+  background-color: #37c48e;
+}
+.button-ooblets--danger {
+  background-color: #f85c69;
+}
+.button--delete {
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.text--danger {
+  margin-top: 30px;
+  color: #f85c69;
+}
+.banner {
+  height: 450px;
+  display: inline-block;
+  position: absolute;
+  z-index: -1;
+  top: 20%;
+  left: 50%;
+}
+.user-inputs,
+.table__user-inputs {
+  height: 35px;
+  width: 120px;
+  padding: 0 15px;
+  border: none;
+  border-radius: 7px;
+  text-transform: capitalize;
+}
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+.table__dropdown {
+  margin-left: 20px;
+}
+thead {
+  border-collapse: separate;
+}
+thead tr {
+  text-align: left;
+  font-size: 24px;
+}
+tr {
+  text-align: right;
+}
+td {
+  padding: 0.75em;
+}
+th {
+  padding-right: 20px;
+}
+footer p {
+  max-width: 100%;
+  text-align: center;
+  opacity: 55%;
 }
 
-a {
-  color: #56a9ff;
-  text-decoration: none;
+@media only screen and (max-width: 992px) {
+  .banner {
+    display: none;
+  }
+  body {
+    text-align: center;
+  }
+  p {
+    margin: 30px auto;
+  }
+  .button-ooblets,
+  .button-ooblets--danger {
+    margin: 0 auto;
+  }
+  .button-ooblets--primary {
+    margin: 0;
+  }
+  ul {
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .table__dropdown {
+    margin-top: 10px;
+  }
+  .table-container {
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .ooblets-logo img {
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  body {
+    padding: 0 2rem;
+  }
+  .ooblets-logo img {
+    width: 100%;
+  }
+  ul {
+    width: 90%;
+  }
+  form div:nth-child(1) {
+    margin-right: 0;
+  }
+  form div:nth-child(2) {
+    margin-bottom: 40px;
+  }
 }

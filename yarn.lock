@@ -10781,10 +10781,10 @@ typeface-fredoka-one@^0.0.72:
   resolved "https://registry.yarnpkg.com/typeface-fredoka-one/-/typeface-fredoka-one-0.0.72.tgz#994d15559b968ae28f12d83f4743ce5bb8f8b2d4"
   integrity sha512-meLEl2OOZwbwgqVYETIhy8mwI4u+J1wgVA59VMbTtmXE8iTgY+EmwJjTe9HvD/Vzuk2nn6WUFA4de2twLFN6Tg==
 
-typescript@^3.9.7:
-  version "3.9.7"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
-  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
+typescript@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.2.tgz#399ab18aac45802d6f2498de5054fcbbe716a805"
+  integrity sha512-zZ4hShnmnoVnAHpVHWpTcxdv7dWP60S2FsydQLV8V5PbS3FifjWFFRiHSWpDJahly88PRyV5teTSLoq4eG7mKw==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"

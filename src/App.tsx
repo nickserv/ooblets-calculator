@@ -2,6 +2,8 @@ import { Field, FieldArray, Form, Formik, FormikErrors } from "formik"
 import { Persist } from "formik-persist"
 import React from "react"
 import { array, mixed, number, object } from "yup"
+import logo from "./images/ooblets-logo.png";
+import banner from "./images/legsy-dance.jpg";
 
 import items from "./items"
 import Orders from "./Orders"
@@ -10,9 +12,13 @@ import { Values, Order } from "./types"
 export default function App() {
   return (
     <>
-      <h1>
-        <a href="https://ooblets.com/">Ooblets</a> Calculator
-      </h1>
+      <a href="https://ooblets.com/" className="ooblets-logo"><img src={logo} alt="Ooblets Logo"></img></a> 
+      <div>
+        <h1>
+          Calculator
+        </h1>
+        <img className="banner" src={banner} alt="The ooblet Legsy is mid-dance pose."></img>
+      </div>
       <p>
         Visit <a href="https://ooblets.gamepedia.com/Plenny's">Plenny's</a> and
         enter what bulk orders you have available today. We'll tell you how you
@@ -46,22 +52,23 @@ export default function App() {
       >
         {({ errors, values }) => (
           <Form>
-            <input type="reset" />
-
             <div>
               <label>
-                Plenny's level:
-                <Field name="level" type="number" min={1} max={4} />
+                Plenny's level
+                <br />
+                <Field name="level" type="number" min={1} max={4} className="user-inputs" style={{ margin: "10px 0 0 0"}}/>
               </label>
             </div>
 
             <div>
               <label>
-                Meed's discount:
+                Meed's discount
+                <br />
                 <Field
                   component="select"
                   name="discount"
-                  style={{ width: "9em" }}
+                  style={{ width: "9em", margin: "10px 0 0 0"}}
+                  className="user-inputs"
                 >
                   <option>none</option>
                   {items.slice(0, values.level).map((items, index) => (
@@ -77,14 +84,18 @@ export default function App() {
               </label>
             </div>
 
-            <h2>Orders</h2>
-            <FieldArray
-              name="orders"
-              // @ts-ignore
-              component={Orders}
-            />
+            <input type="reset" className="button-ooblets--danger"/>
 
-            {Object.keys(errors).length ? <h2>Errors</h2> : null}
+            <h2 style={{ margin: "100px 0 30px 0"}}>Orders</h2>
+            <div className="table-container">
+              <FieldArray
+                name="orders"
+                // @ts-ignore
+                component={Orders}
+              />
+            </div>
+
+            {Object.keys(errors).length ? <h2 className="text--danger">Errors</h2> : null}
             <ul>
               {[
                 errors.level,
@@ -109,6 +120,9 @@ export default function App() {
           Source on GitHub
         </a>
       </p>
+      <footer>
+        <p>Ooblet images and names are registered trademarks or trademarks of © 2016-2021 Glumberland LLC.</p>
+      </footer>
     </>
   )
 }

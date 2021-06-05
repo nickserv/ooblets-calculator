@@ -1,8 +1,8 @@
 import { ArrayHelpers, Field, FormikProps } from "formik"
 import React, { createRef, RefObject, useEffect, useRef } from "react"
+import xButton from "./images/x-button.svg";
 
 import items from "./items"
-import "./Orders.css"
 import { Order, Values } from "./types"
 
 const defaultOrder: Order = {
@@ -123,12 +123,14 @@ export default function OrdersForm({
                     if (value % 5)
                       return `orders.${index}.amount must by divisible by 5`
                   }}
-                  style={{ width: "2.5em" }}
+                  className="table__user-inputs"
+                  style={{ width: "2.5em"}}
                 />
 
                 <Field
                   component="select"
                   name={`orders.${index}.item`}
+                  className="table__user-inputs table__dropdown"
                   style={{ width: "11em" }}
                 >
                   {items.slice(0, values.level).map((items, index) => (
@@ -148,6 +150,7 @@ export default function OrdersForm({
                   name={`orders.${index}.payment`}
                   type="number"
                   size={5}
+                  className="table__user-inputs"
                   style={{ width: "4em" }}
                 />
               </td>
@@ -161,12 +164,13 @@ export default function OrdersForm({
               <td>
                 <button
                   type="button"
+                  className="button--delete"
                   onClick={() => {
                     remove(index)
                     removedRow.current = index
                   }}
                 >
-                  X
+                  <img src={xButton} alt=""></img>
                 </button>
               </td>
             </tr>
@@ -178,7 +182,7 @@ export default function OrdersForm({
         <tr>
           <td colSpan={8}>
             <button
-              className="fluid"
+              className="button-ooblets--primary"
               type="button"
               onClick={() => {
                 push(defaultOrder)
