@@ -1,6 +1,5 @@
 import { Field, FieldArray, Form, Formik, FormikErrors } from "formik"
 import { Persist } from "formik-persist"
-import React from "react"
 import { array, mixed, number, object } from "yup"
 
 import items from "./items"

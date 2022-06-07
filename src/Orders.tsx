@@ -1,5 +1,5 @@
 import { ArrayHelpers, Field, FormikProps } from "formik"
-import React, { createRef, RefObject, useEffect, useRef } from "react"
+import { createRef, RefObject, useEffect, useRef } from "react"
 
 import items from "./items"
 import "./Orders.css"
