@@ -89,9 +89,9 @@ export default function App() {
               {[
                 errors.level,
                 errors.discount,
-                ...((errors.orders as
-                  | FormikErrors<Order>[]
-                  | undefined)?.flatMap(Object.values) ?? []),
+                ...((
+                  errors.orders as FormikErrors<Order>[] | undefined
+                )?.flatMap(Object.values) ?? []),
               ]
                 .filter((error) => error)
                 .map((error) => (
