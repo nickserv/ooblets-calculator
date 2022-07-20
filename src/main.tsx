@@ -1,11 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "typeface-fredoka-one"
-import "./index.css"
 import App from "./App"
+import "./index.css"
 
-const root = ReactDOM.createRoot(document.getElementById("root")!)
-root.render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
