@@ -6,6 +6,6 @@ test("focuses new order when adding", async () => {
   render(<App />)
   userEvent.click(screen.getByText("Add"))
   expect(
-    within(screen.getByRole("table")).getAllByRole("spinbutton")[0]
+    within(screen.getByRole("table")).getAllByRole("spinbutton")[0],
   ).toHaveFocus()
 })

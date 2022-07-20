@@ -29,7 +29,7 @@ export function calculateOrders(discount: string, orders: Order[]) {
             ? item.name === discount
               ? Math.floor(item.cost * 0.5)
               : item.cost
-            : 0) * order.amount
+            : 0) * order.amount,
       )
       .reduce((x, y) => x + y)
     const profit = order.payment - cost
@@ -56,7 +56,7 @@ export default function OrdersForm({
     inputRefs.current.push(
       ...values.orders
         .slice(inputRefs.current.length)
-        .map(() => createRef<HTMLInputElement>())
+        .map(() => createRef<HTMLInputElement>()),
     )
 
     const last = inputRefs.current[inputRefs.current.length - 1]?.current
@@ -97,7 +97,7 @@ export default function OrdersForm({
         {data.map((row, index) => {
           function highlightRecommended(
             key: keyof typeof data[0],
-            reverse = false
+            reverse = false,
           ) {
             const results = data
               .map((row, index) => index)

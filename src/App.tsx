@@ -38,7 +38,7 @@ export default function App() {
               amount: number().integer().min(5).max(40),
               item: mixed().oneOf(items.flat().map((item) => item.name)),
               payment: number().integer().min(1),
-            })
+            }),
           ),
         })}
         onSubmit={() => {}}
