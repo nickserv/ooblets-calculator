@@ -2595,9 +2595,9 @@ escodegen@^2.0.0:
     source-map "~0.6.1"
 
 eslint-config-modern@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-modern/-/eslint-config-modern-0.6.0.tgz#519300d09a481413f7656452f460bff568455248"
-  integrity sha512-2fzhHvAZVm0d3JYut5r/w3Fm2+fJs6f3p4fSLeDiLknHJrKOLOqv5Ylj3t0/GupeqkfS/UaVeGRlseXdCjCGug==
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/eslint-config-modern/-/eslint-config-modern-0.6.7.tgz#cfc3f85347898c10af3ef07a99a03c4e2ca02bbf"
+  integrity sha512-H2fdfgwT5aZWpTRsOmZAfPn8l4MYxl6y2JPNdOsmA9p0rcaciYVvZySkfkRJD2DBaDINVFb2STczpYRo/IF3Xw==
 
 eslint-config-react-app@^7.0.1:
   version "7.0.1"
