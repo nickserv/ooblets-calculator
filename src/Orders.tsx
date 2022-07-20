@@ -1,5 +1,5 @@
-import { ArrayHelpers, ErrorMessage, Field, FormikProps } from "formik"
-import React from "react"
+import { ArrayHelpers, Field, FormikProps } from "formik"
+import { createRef, RefObject, useEffect, useRef } from "react"
 
 import items from "./items"
 import "./Orders.css"
@@ -15,11 +15,70 @@ function getItem(item: string) {
   return items.flat().find(({ name }) => name === item)!
 }
 
+export function calculateOrders(discount: string, orders: Order[]) {
+  return orders.map((order) => {
+    let orderItems = [getItem(order.item)]
+    if ("from" in orderItems[0]) {
+      orderItems = orderItems[0].from.map(getItem)
+    }
+
+    const cost = orderItems
+      .map(
+        (item) =>
+          ("cost" in item
+            ? item.name === discount
+              ? Math.floor(item.cost * 0.5)
+              : item.cost
+            : 0) * order.amount,
+      )
+      .reduce((x, y) => x + y)
+    const profit = order.payment - cost
+    // maximum
+    const days = orderItems
+      .map((item) => ("days" in item ? item.days : 0))
+      .reduce((x, y) => Math.max(x, y))
+    const profitPerDay = Math.round(profit / (days || 1))
+
+    return { cost, profit, days, profitPerDay }
+  })
+}
+
 export default function OrdersForm({
   push,
   remove,
   form: { values },
 }: ArrayHelpers & { form: FormikProps<Values> }) {
+  const inputRefs = useRef<RefObject<HTMLInputElement>[]>([])
+  const addingRow = useRef(false)
+  const removedRow = useRef<number>()
+
+  useEffect(() => {
+    inputRefs.current.push(
+      ...values.orders
+        .slice(inputRefs.current.length)
+        .map(() => createRef<HTMLInputElement>()),
+    )
+
+    const last = inputRefs.current[inputRefs.current.length - 1]?.current
+
+    if (last && addingRow.current) {
+      last.focus()
+      last.select()
+      addingRow.current = false
+    }
+
+    if (removedRow.current !== undefined) {
+      inputRefs.current.splice(removedRow.current, 1)
+      removedRow.current = undefined
+    }
+
+    if (!values.orders.length) {
+      inputRefs.current = []
+    }
+  })
+
+  const data = calculateOrders(values.discount, values.orders)
+
   return (
     <table>
       <thead>
@@ -35,31 +94,28 @@ export default function OrdersForm({
       </thead>
 
       <tbody>
-        {values.orders.map((order, index) => {
-          let orderItems = [getItem(order.item)]
-          if ("from" in orderItems[0]) {
-            orderItems = orderItems[0].from.map(getItem)
-          }
+        {data.map((row, index) => {
+          function highlightRecommended(
+            key: keyof typeof data[0],
+            reverse = false,
+          ) {
+            const results = data
+              .map((row, index) => index)
+              .sort((a, b) => data[b][key] - data[a][key])
 
-          const cost = orderItems
-            .map(
-              (item) =>
-                ("cost" in item ? item.cost : 0) *
-                order.amount *
-                (order.item === values.discount ? 0.5 : 1)
-            )
-            .reduce((x, y) => x + y)
-          const profit = order.payment - cost
-          // maximum
-          const days = orderItems
-            .map((item) => ("days" in item ? item.days : 0))
-            .reduce((x, y) => Math.max(x, y))
-          const profitPerDay = Math.round(profit / (days || 1))
+            if (reverse) {
+              results.reverse()
+            }
+
+            const isRecommended = results.slice(0, values.level).includes(index)
+            return isRecommended ? <strong>{row[key]}</strong> : row[key]
+          }
 
           return (
             <tr key={index}>
               <td>
                 <Field
+                  innerRef={inputRefs.current[index]}
                   name={`orders.${index}.amount`}
                   type="number"
                   step={5}
@@ -69,7 +125,6 @@ export default function OrdersForm({
                   }}
                   style={{ width: "2.5em" }}
                 />
-                <ErrorMessage name={`orders.${index}.amount`} />
 
                 <Field
                   component="select"
@@ -84,10 +139,9 @@ export default function OrdersForm({
                     </optgroup>
                   ))}
                 </Field>
-                <ErrorMessage name={`orders.${index}.item`} />
               </td>
 
-              <td>{cost}</td>
+              <td>{highlightRecommended("cost", true)}</td>
 
               <td>
                 <Field
@@ -96,17 +150,22 @@ export default function OrdersForm({
                   size={5}
                   style={{ width: "4em" }}
                 />
-                <ErrorMessage name={`orders.${index}.payment`} />
               </td>
 
-              <td>{profit}</td>
+              <td>{highlightRecommended("profit")}</td>
 
-              <td>{days}</td>
+              <td>{highlightRecommended("days", true)}</td>
 
-              <td>{profitPerDay}</td>
+              <td>{highlightRecommended("profitPerDay")}</td>
 
               <td>
-                <button type="button" onClick={() => remove(index)}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    remove(index)
+                    removedRow.current = index
+                  }}
+                >
                   X
                 </button>
               </td>
@@ -121,7 +180,10 @@ export default function OrdersForm({
             <button
               className="fluid"
               type="button"
-              onClick={() => push(defaultOrder)}
+              onClick={() => {
+                push(defaultOrder)
+                addingRow.current = true
+              }}
             >
               Add
             </button>

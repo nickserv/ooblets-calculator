@@ -1,0 +1,102 @@
+// Vitest Snapshot v1
+
+exports[`calculates orders 1`] = `
+[
+  {
+    "cost": 100,
+    "days": 3,
+    "profit": 186,
+    "profitPerDay": 62,
+  },
+  {
+    "cost": 0,
+    "days": 0,
+    "profit": 78,
+    "profitPerDay": 78,
+  },
+  {
+    "cost": 480,
+    "days": 3,
+    "profit": -285,
+    "profitPerDay": -95,
+  },
+  {
+    "cost": 50,
+    "days": 1.5,
+    "profit": 41,
+    "profitPerDay": 27,
+  },
+  {
+    "cost": 240,
+    "days": 5,
+    "profit": 1008,
+    "profitPerDay": 202,
+  },
+  {
+    "cost": 90,
+    "days": 5,
+    "profit": 54,
+    "profitPerDay": 11,
+  },
+  {
+    "cost": 60,
+    "days": 2,
+    "profit": 132,
+    "profitPerDay": 66,
+  },
+  {
+    "cost": 50,
+    "days": 7,
+    "profit": 334,
+    "profitPerDay": 48,
+  },
+  {
+    "cost": 240,
+    "days": 2,
+    "profit": 840,
+    "profitPerDay": 420,
+  },
+  {
+    "cost": 380,
+    "days": 4,
+    "profit": 820,
+    "profitPerDay": 205,
+  },
+  {
+    "cost": 75,
+    "days": 3,
+    "profit": 525,
+    "profitPerDay": 175,
+  },
+  {
+    "cost": 120,
+    "days": 2,
+    "profit": 1800,
+    "profitPerDay": 900,
+  },
+  {
+    "cost": 390,
+    "days": 3,
+    "profit": 4722,
+    "profitPerDay": 1574,
+  },
+  {
+    "cost": 1640,
+    "days": 5,
+    "profit": 7960,
+    "profitPerDay": 1592,
+  },
+  {
+    "cost": 680,
+    "days": 5,
+    "profit": 3160,
+    "profitPerDay": 632,
+  },
+  {
+    "cost": 1520,
+    "days": 4,
+    "profit": 8080,
+    "profitPerDay": 2020,
+  },
+]
+`;

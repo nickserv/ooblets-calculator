@@ -1,11 +1,10 @@
-import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik"
+import { Field, FieldArray, Form, Formik, FormikErrors } from "formik"
 import { Persist } from "formik-persist"
-import React from "react"
 import { array, mixed, number, object } from "yup"
 
 import items from "./items"
 import Orders from "./Orders"
-import { Values } from "./types"
+import { Values, Order } from "./types"
 
 export default function App() {
   return (
@@ -36,10 +35,10 @@ export default function App() {
           ]),
           orders: array().of(
             object().shape({
-              amount: number().integer().min(5),
+              amount: number().integer().min(5).max(40),
               item: mixed().oneOf(items.flat().map((item) => item.name)),
               payment: number().integer().min(1),
-            })
+            }),
           ),
         })}
         onSubmit={() => {}}
@@ -53,7 +52,6 @@ export default function App() {
                 Plenny's level:
                 <Field name="level" type="number" min={1} max={4} />
               </label>
-              <ErrorMessage name="level" />
             </div>
 
             <div>
@@ -76,7 +74,6 @@ export default function App() {
                   ))}
                 </Field>
               </label>
-              <ErrorMessage name="discount" />
             </div>
 
             <h2>Orders</h2>
@@ -85,6 +82,21 @@ export default function App() {
               // @ts-ignore
               component={Orders}
             />
+
+            {Object.keys(errors).length ? <h2>Errors</h2> : null}
+            <ul>
+              {[
+                errors.level,
+                errors.discount,
+                ...((
+                  errors.orders as FormikErrors<Order>[] | undefined
+                )?.flatMap(Object.values) ?? []),
+              ]
+                .filter((error) => error)
+                .map((error) => (
+                  <li key={error}>{error}</li>
+                ))}
+            </ul>
 
             <Persist name="form" />
           </Form>
