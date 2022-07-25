@@ -3,8 +3,11 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
 
@@ -14,11 +17,15 @@ jobs:
       - name: Test
         run: npm test
 
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
       - name: Build
         run: npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
-        if: github.ref == 'refs/heads/main'
         with:
           folder: build
