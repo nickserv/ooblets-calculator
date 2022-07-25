@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import "typeface-fredoka-one"
+import "@fontsource/fredoka-one"
 import App from "./App"
 import "./index.css"
 
