@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm ci
-      - run: eslint .
-      - run: tsc
+      - run: npx eslint .
+      - run: npx tsc
       - run: npm test
   deploy:
     needs: test
