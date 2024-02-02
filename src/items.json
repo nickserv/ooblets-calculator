@@ -1,43 +1,47 @@
 [
   [
-    { "name": "caroot", "cost": 5, "days": 1.5 },
-    { "name": "clothlets", "cost": 32, "days": 3 },
-    { "name": "muz", "cost": 3, "days": 2 },
-    { "name": "nurnies" },
-    { "name": "planklets" },
-    { "name": "sweetiebeeties", "cost": 5, "days": 3 }
+    { "name": "caroot", "cost": 5, "payment": 9.1, "days": 1.5 },
+    { "name": "clothlets", "cost": 32, "payment": 13, "days": 3 },
+    { "name": "muz", "cost": 3, "payment": 120, "days": 2 },
+    { "name": "nurnies", "payment": 2.6 },
+    { "name": "planklets", "payment": 3.9 },
+    { "name": "sweetiebeeties", "cost": 5, "payment": 14.3, "days": 3 }
   ],
   [
     { "name": "flootiflowers", "cost": 7, "days": 4 },
-    { "name": "froobtose", "from": ["sweetiebeeties"] },
-    { "name": "ground springbeans", "from": ["springbeans"] },
-    { "name": "lopauliflowers", "cost": 10, "days": 7 },
-    { "name": "muz flour", "from": ["muz"] },
-    { "name": "pompadoots", "cost": 8, "days": 5 },
-    { "name": "springbeans", "cost": 6, "days": 5 },
+    { "name": "froobtose", "payment": 24, "from": ["sweetiebeeties"] },
+    { "name": "ground springbeans", "payment": 12.8, "from": ["springbeans"] },
+    { "name": "lopauliflowers", "cost": 10, "payment": 38.4, "days": 7 },
+    { "name": "muz flour", "payment": 12, "from": ["muz"] },
+    { "name": "pompadoots", "cost": 8, "payment": 41.6, "days": 5 },
+    { "name": "springbeans", "cost": 6, "payment": 9.6, "days": 5 },
     { "name": "zinookas", "cost": 10, "days": 4 }
   ],
   [
     {
       "name": "beanjuice",
+      "payment": 30,
       "from": ["springbeans", "springbeans", "springbeans"]
     },
     { "name": "bettie curd", "from": ["sweetiebeeties", "muz"] },
-    { "name": "clambrosia", "from": ["sweetiebeeties"] },
+    { "name": "clambrosia", "payment": 40, "from": ["sweetiebeeties"] },
     {
       "name": "flooti karioka",
+      "payment": 60,
       "from": ["sweetiebeeties", "flootiflowers", "flootiflowers"]
     },
-    { "name": "hop dobs", "from": ["caroot", "muz"] },
-    { "name": "oodles", "from": ["muz"] }
+    { "name": "hop dobs", "payment": 36, "from": ["caroot", "muz"] },
+    { "name": "oodles", "payment": 1920, "from": ["muz"] }
   ],
   [
     {
       "name": "blue goo pie",
+      "payment": 48,
       "from": ["sweetiebeeties", "zinookas", "zinookas", "zinookas", "muz"]
     },
     {
       "name": "go go cupcakes",
+      "payment": 240,
       "from": [
         "muz",
         "springbeans",
@@ -50,14 +54,17 @@
     },
     {
       "name": "lurge lattys",
+      "payment": 288,
       "from": ["springbeans", "springbeans", "pompadoots"]
     },
     {
       "name": "pibblepug pies",
+      "payment": 170.4,
       "from": ["muz", "sweetiebeeties", "sweetiebeeties"]
     },
     {
       "name": "spressies",
+      "payment": 96,
       "from": ["springbeans", "springbeans", "sweetiebeeties"]
     }
   ]
