@@ -4,7 +4,7 @@ import inferredItems from "./items.json"
 type Item = { name: string } & (
   | {}
   | { cost: number; days: number }
-  | { from: string[] }
+  | { from: Record<string, number> }
 )
 
 const items: Item[][] = inferredItems

@@ -15,11 +15,22 @@ function getItem(item: string) {
   return items.flat().find(({ name }) => name === item)!
 }
 
+function mapValues<
+  K extends string | number | symbol,
+  V,
+  O extends Record<K, V>,
+  VV
+>(object: O, callback: (value: V) => VV): Record<K, VV> {
+  return Object.fromEntries(
+    Object.entries(object).map(([key, value]) => [key, callback(value)])
+  )
+}
+
 export function calculateOrders(discount: string, orders: Order[]) {
   return orders.map((order) => {
-    let orderItems = [getItem(order.item)]
+    let orderItems = getItem(order.item)
     if ("from" in orderItems[0]) {
-      orderItems = orderItems[0].from.map(getItem)
+      orderItems = mapValues(orderItems[0].from).map(getItem)
     }
 
     const cost = orderItems

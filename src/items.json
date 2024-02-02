@@ -9,56 +9,44 @@
   ],
   [
     { "name": "flootiflowers", "cost": 7, "days": 4 },
-    { "name": "froobtose", "from": ["sweetiebeeties"] },
-    { "name": "ground springbeans", "from": ["springbeans"] },
+    { "name": "froobtose", "from": { "sweetiebeeties": 1 } },
+    { "name": "ground springbeans", "from": { "springbeans": 1 } },
     { "name": "lopauliflowers", "cost": 10, "days": 7 },
-    { "name": "muz flour", "from": ["muz"] },
+    { "name": "muz flour", "from": { "muz": 1 } },
     { "name": "pompadoots", "cost": 8, "days": 5 },
     { "name": "springbeans", "cost": 6, "days": 5 },
     { "name": "zinookas", "cost": 10, "days": 4 }
   ],
   [
-    {
-      "name": "beanjuice",
-      "from": ["springbeans", "springbeans", "springbeans"]
-    },
-    { "name": "bettie curd", "from": ["sweetiebeeties", "muz"] },
-    { "name": "clambrosia", "from": ["sweetiebeeties"] },
+    { "name": "beanjuice", "from": { "springbeans": 3 } },
+    { "name": "bettie curd", "from": { "sweetiebeeties": 1, "muz": 1 } },
+    { "name": "clambrosia", "from": { "sweetiebeeties": 1 } },
     {
       "name": "flooti karioka",
-      "from": ["sweetiebeeties", "flootiflowers", "flootiflowers"]
+      "from": { "sweetiebeeties": 1, "flootiflowers": 2 }
     },
-    { "name": "hop dobs", "from": ["caroot", "muz"] },
-    { "name": "oodles", "from": ["muz"] }
+    { "name": "hop dobs", "from": { "caroot": 1, "muz": 1 } },
+    { "name": "oodles", "from": { "muz": 1 } }
   ],
   [
     {
       "name": "blue goo pie",
-      "from": ["sweetiebeeties", "zinookas", "zinookas", "zinookas", "muz"]
+      "from": { "sweetiebeeties": 1, "zinookas": 3, "muz": 1 }
     },
     {
       "name": "go go cupcakes",
-      "from": [
-        "muz",
-        "springbeans",
-        "springbeans",
-        "sweetiebeeties",
-        "flootiflowers",
-        "flootiflowers",
-        "flootiflowers"
-      ]
+      "from": {
+        "muz": 1,
+        "springbeans": 2,
+        "sweetiebeeties": 1,
+        "flootiflowers": 3
+      }
     },
-    {
-      "name": "lurge lattys",
-      "from": ["springbeans", "springbeans", "pompadoots"]
-    },
+    { "name": "lurge lattys", "from": { "springbeans": 2, "pompadoots": 1 } },
     {
       "name": "pibblepug pies",
-      "from": ["muz", "sweetiebeeties", "sweetiebeeties"]
+      "from": { "muz": 1, "sweetiebeeties": 2 }
     },
-    {
-      "name": "spressies",
-      "from": ["springbeans", "springbeans", "sweetiebeeties"]
-    }
+    { "name": "spressies", "from": { "springbeans": 2, "sweetiebeeties": 1 } }
   ]
 ]
